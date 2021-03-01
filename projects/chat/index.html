@@ -1,0 +1,397 @@
+<style>
+    html,
+    body,
+    #main {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0
+    }
+
+    #app {
+        display: flex;
+        justify-content: center;
+    }
+
+    #login {
+        margin-top: 5%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 452px;
+        height: 497px;
+        background:#476FCC ;
+        text-align: center;
+    }
+
+    .login__title {
+        margin-top: 20px;
+        font-family: Ubuntu;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 28px;
+        color: #ffffff;
+    }
+
+    .login__text {
+        font-family: Ubuntu;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 18px;
+        color: #FFFFFF;
+        padding-top: 10px;
+        margin-bottom: 38px;
+    }
+
+    .login-name-input {
+        font-family: Ubuntu;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 18px;
+        color: #FFFFFF;
+        background-color: #599CFF;
+        width: 298px;
+        height: 32px;
+        align-self: center;
+        border: none;
+        text-align: left;
+        margin-bottom: 40px;
+        border-bottom: 1px solid #FFFFFF;
+    }
+
+    .login-name-input:focus {
+        outline: none;
+    }
+
+    .login-submit {
+        width: 132px;
+        height: 43px;
+        color: #ffffff;
+        background:#4790FF ;
+        border-radius: 5px;
+        font-family: Ubuntu;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 17px;
+        text-transform: uppercase;
+        align-self: flex-end;
+        outline: none;
+        border: none;
+        margin-right: 25px;
+        margin-top: 70px;
+    }
+
+    .login-error {
+        font-family: Ubuntu;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 18px;
+        color: #FFFFFF;
+        padding-top: 5px;
+    }
+
+    #main {
+        display: flex;
+    }
+
+    .left-side {
+        flex-grow: 1;
+        max-width: 260px;
+        min-width: 200px;
+        background: #599CFF;
+        color: 7F91A4;
+        padding: 14px;
+        box-sizing: border-box;
+    }
+
+    .user-list {
+        padding: 4px 0 0 8px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .user-info {
+        margin-bottom: 10px;
+        margin-left: 4px;
+        display: flex;
+        align-items: center;
+    }
+
+    .user-name,
+    .message-item-header-name {
+        font-family: Ubuntu;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+        color: #2A1499;
+    }
+
+    .user-photo,
+    .message-item-photo {
+        margin-right: 8px;
+        background: url(/projects/chat/nophoto.png);
+        background-size: cover;
+        background-color: #232F3D;
+        border-radius: 50%;
+        height: 46px;
+        width: 46px;
+    }
+
+    .right-side {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        padding: 10px;
+        background-color: #476FCC;
+        color: #FFFFFF;
+    }
+
+    .messages-header {
+        padding-left: 16px;
+        width: 546px;
+        height: 56px;
+        border: 1px solid #0E1621;
+        border-radius: 3px;
+    }
+
+    .messages-header-title {
+        font-family: Ubuntu;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 16px;
+        color: #FFFFFF;
+        padding-top: 13px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
+
+    .messages-container {
+        background-color:#476FCC ;
+        flex-grow: 1;
+        overflow: scroll;
+        color: #ffffff;
+        padding: 20px 30px 20px 10px;
+    }
+
+    .input-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border: 1px solid #476FCC;
+        border-radius: 3px;
+    }
+
+    .message-input {
+        flex: 1;
+        height: 54px;
+        background:#599CFF;
+        border: none;
+        color: #FFFFFF ;
+        padding-left: 16px;
+        outline: none;
+    }
+
+    .send-button {
+        width: 112px;
+        height: 36px;
+        background: #4790FF;
+        border-radius: 5px;
+        font-family: Ubuntu;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 16px;
+        color: #FFFFFF;
+        padding: 6px 20px 6px 20px;
+        border: none;
+        outline: none;
+        margin-left: 7px;
+    }
+
+    .hidden#main,
+    .hidden#login {
+        display: none;
+    }
+
+    .user-wrapper {
+        display: inline-flex;
+    }
+
+    .user-list-item {
+        color: #ffffff;
+        margin-left: 10px;
+        margin-bottom: 15px;
+    }
+
+    .user-list-header {
+        color:#FFFFFF;
+        margin-bottom: 15px;
+    }
+
+    .user-list-avatar {
+        width: 26px;
+        height: 26px;
+        margin-top: -2px;
+        background-size: cover;
+        background-color: #232F3D;
+        border-radius: 50%;
+    }
+
+    .user-photo-chat {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .message-item-system,
+    .message-item-header-time {
+        color: #2A4E52;
+        font-size: 12px;
+        margin-left: 10px;
+        margin-top: 2px;
+    }
+
+    .message-item-header-time {
+        margin-top: 0;
+        align-self: flex-end;
+    }
+
+    .message-item {
+        display: flex;
+        flex-direction: row;
+        font-size: 14px;
+        margin-bottom: 12px;
+        margin-left: 12px;
+    }
+
+    .message-item-header {
+        display: inline-flex;
+    }
+
+    .popup {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.2);
+        top: 0;
+        transform: translateY(-100%);
+    }
+
+    .open .popup {
+        transform: translateY(0);
+    }
+
+    .popup__body {
+        background: #476FCC;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 364px;
+        height: 220px;
+    }
+
+    .popup__content {
+        height: 100%;
+        position: relative;
+        flex-direction: column;
+        margin-top: 34px;
+        margin-bottom: 42px;
+        margin-left: 35px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .popup__pic {
+        transform: translate(140%, 150%);
+    }
+
+    .popup__background {
+        height: 86px;
+        width: 86px;
+    }
+
+    .popup__title {
+        font-family: Ubuntu;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 28px;
+        color: #ffffff;
+    }
+</style>
+</head>
+
+<body>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+
+    <div id="app">
+        <div id="login" class="login-field">
+            <div class="login__title">Авторизация</div>
+            <div class="login__text">Введите, пожалуйста, свои данные для авторизации</div>
+            <input type="text" class="login-name-input" data-role="login-nik-input" placeholder="Введите свой ник">
+            <input type="text" class="login-name-input" data-role="login-name-input" placeholder="Введите ФИО">
+            <button class="login-submit" data-role="login-submit">ВОЙТИ</button>
+            <div class="login-error" data-role="login-error"></div>
+        </div>
+    </div>
+
+    <div id="main" class="hidden">
+        <div class="left-side">
+            <div class="user-info">
+                <div class="user-photo userpic" data-role="user-photo"></div>
+                <div class="user-name" data-role="user-name"></div>
+            </div>
+            <div class="user-list-container">
+                <div class="user-list-header">
+                    Участники:
+                </div>
+
+                <div class="user-list" data-role="user-list">
+                </div>
+            </div>
+        </div>
+        <div class="right-side">
+            <div class="messages-container" data-role="messages-list"></div>
+            <div class="input-container" data-role="message-sender">
+                <input class="message-input" data-role="message-input" type="text" placeholder="Текст сообщения">
+                <button class="send-button" data-role="message-send-button">Отправить</button>
+            </div>
+        </div>
+        <div id="popup" class="popup">
+            <div class="popup__body">
+                <div class="popup__content">
+                    <div class="popup__title">Загрузка фото</div>
+                    <label for="user-avatar" class="user-info">
+                        <input id="user-avatar" type="file" style="display: none;">
+                        <div class="user-photo userpic popup__background" data-role="user-photo">
+                            <svg class="popup__pic" width="23" height="20" viewBox="0 0 23 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M14.959 11.5766C14.959 13.4922 13.4103 15.045 11.5 15.045C9.58966 15.045 8.04102 13.4922 8.04102 11.5766C8.04102 9.66099 9.58966 8.10811 11.5 8.10811C13.4103 8.10811 14.959 9.66099 14.959 11.5766Z"
+                                    fill="white" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M17.2487 3.06306H19.9902C21.6525 3.06306 23 4.41428 23 6.08108V16.982C23 18.6488 21.6525 20 19.9902 20H3.00977C1.34752 20 0 18.6488 0 16.982V6.08108C0 4.41428 1.34752 3.06306 3.00977 3.06306H5.75126C5.79882 1.36329 7.18791 0 8.89453 0H14.1055C15.8121 0 17.2012 1.36329 17.2487 3.06306ZM11.5 17.027C14.502 17.027 16.9355 14.5868 16.9355 11.5766C16.9355 8.56637 14.502 6.12613 11.5 6.12613C8.49803 6.12613 6.06445 8.56637 6.06445 11.5766C6.06445 14.5868 8.49803 17.027 11.5 17.027Z"
+                                    fill="white" />
+                            </svg>
+                        </div>
+                        <div class="user-name" data-role="user-name"></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
